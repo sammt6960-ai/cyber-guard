@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08111f">
+    <meta name="description"
+          content="Cyber Guard is an educational cybersecurity dashboard for checking suspicious URLs and learning online safety.">
+    <title>Cyber Guard | Cybersecurity Dashboard</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+
+<body>
+    <header class="navbar">
+        <a href="/" class="brand" aria-label="Cyber Guard home">
+            <span class="brand-icon">🛡️</span>
+            <span>CYBER<span class="accent">GUARD</span></span>
+        </a>
+
+        <nav aria-label="Main navigation">
+            <a href="#scanner">URL Scanner</a>
+            <a href="#security-tips">Security Tips</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <span class="status">
+            <span class="status-dot"></span>
+            LOCAL SCANNER
+        </span>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="eyebrow">
+                <span class="status-dot"></span>
+                YOUR DIGITAL SAFETY STARTS HERE
+            </div>
+
+            <h1>Stay ahead of<br>
+                <span class="gradient-text">cyber threats.</span>
+            </h1>
+
+            <p class="hero-description">
+                Inspect suspicious URLs, understand potential warning signs,
+                and build smarter cybersecurity habits.
+            </p>
+
+            <a class="primary-button" href="#scanner">
+                Scan a URL <span aria-hidden="true">→</span>
+            </a>
+
+            <div class="hero-note">
+                <span>✓</span> No website is opened by the scanner
+                <span>·</span> No API key required
+            </div>
+        </section>
+
+        <section class="scanner-section" id="scanner">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">THREAT INSPECTION</p>
+                    <h2>Suspicious URL Scanner</h2>
+                    <p class="muted">
+                        Check a link for common suspicious characteristics.
+                    </p>
+                </div>
+                <div class="scanner-icon">⌕</div>
+            </div>
+
+            <form id="scan-form" class="scan-form">
+                <label for="url-input">Website URL</label>
+
+                <div class="input-row">
+                    <input
+                        id="url-input"
+                        name="url"
+                        type="text"
+                        maxlength="2048"
+                        placeholder="https://example.com"
+                        autocomplete="url"
+                        spellcheck="false"
+                        required
+                    >
+                    <button type="submit" id="scan-button">
+                        Analyze URL
+                    </button>
+                </div>
+
+                <p class="input-help">
+                    Tip: You can enter a domain such as example.com.
+                    Do not enter passwords or other private information.
+                </p>
+            </form>
+
+            <div id="loading" class="loading hidden" role="status">
+                Analyzing URL characteristics...
+            </div>
+
+            <div id="error-message"
+                 class="error-message hidden"
+                 role="alert"></div>
+
+            <section id="results"
+                     class="results hidden"
+                     aria-live="polite"
+                     aria-labelledby="result-title">
+
+                <div class="result-top">
+                    <div>
+                        <p class="eyebrow">ANALYSIS REPORT</p>
+                        <h3 id="result-title">Scan results</h3>
+                        <p id="result-host" class="muted"></p>
+                    </div>
+
+                    <div id="risk-badge" class="risk-badge">
+                        Pending
+                    </div>
+                </div>
+
+                <div class="score-area">
+                    <div class="score-number">
+                        <span id="risk-score">0</span>
+                        <span class="score-total">/100</span>
+                    </div>
+                    <div class="score-track">
+                        <div id="score-bar" class="score-bar"></div>
+                    </div>
+                    <p id="result-summary" class="muted"></p>
+                </div>
+
+                <h4>Indicators found</h4>
+                <ul id="findings-list" class="findings-list"></ul>
+
+                <p id="no-findings" class="muted hidden">
+                    No warning indicators were detected by these rules.
+                </p>
+
+                <p id="disclaimer" class="disclaimer"></p>
+            </section>
+        </section>
+
+        <section class="tips-section" id="security-tips">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">STAY PROTECTED</p>
+                    <h2>Security essentials</h2>
+                    <p class="muted">
+                        Simple habits can reduce your exposure to online threats.
+                    </p>
+                </div>
+            </div>
+
+            <div class="tips-grid">
+                <article class="tip-card">
+                    <span class="tip-icon">🔗</span>
+                    <h3>Inspect links</h3>
+                    <p>
+                        Check the spelling of the domain and be cautious of
+                        unexpected login or payment requests.
+                    </p>
+                </article>
+
+                <article class="tip-card">
+                    <span class="tip-icon">🔐</span>
+                    <h3>Use MFA</h3>
+                    <p>
+                        Enable multifactor authentication and use unique,
+                        strong passwords for important accounts.
+                    </p>
+                </article>
+
+                <article class="tip-card">
+                    <span class="tip-icon">🎣</span>
+                    <h3>Spot phishing</h3>
+                    <p>
+                        Verify urgent requests through a separate trusted
+                        channel instead of following the message link.
+                    </p>
+                </article>
+
+                <article class="tip-card">
+                    <span class="tip-icon">⬆️</span>
+                    <h3>Update devices</h3>
+                    <p>
+                        Install security updates for your operating system,
+                        browser, and applications.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="about-section" id="about">
+            <p class="eyebrow">ABOUT THE PROJECT</p>
+            <h2>Cybersecurity starts with awareness.</h2>
+            <p>
+                Cyber Guard is an educational cybersecurity project designed
+                to demonstrate web development, input validation, and basic
+                suspicious-URL analysis.
+            </p>
+            <p class="muted">
+                It is not a substitute for a commercial threat-intelligence
+                platform, antivirus software, or professional security review.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <a href="/" class="brand">
+            <span class="brand-icon">🛡️</span>
+            <span>CYBER<span class="accent">GUARD</span></span>
+        </a>
+        <p>Learn. Detect. Protect.</p>
+        <p class="footer-note">Educational project · Use the internet responsibly</p>
+    </footer>
+</body>
+</html>
